@@ -62,12 +62,12 @@ else:
     col5, col6 = st.columns(2)
 
     with col5:
-        st.title('Retailer Count by Revenue %')
+        st.title('Retailers by Revenue %')
         retailer_count = Preprocessor.fetch_top_revenue_retailers(filtered_df)
         retailer_count.set_index('Percentage Revenue', inplace=True)
         st.bar_chart(retailer_count,x_label='Percentage Revenue', y_label='Retailer Count')    
     with col6:
-        st.title('Companies Count by Revenue %')
+        st.title('Companies by Revenue %')
         retailer_count = Preprocessor.fetch_top_revenue_companies(filtered_df)
         retailer_count.set_index('Percentage Revenue', inplace=True)
         st.bar_chart(retailer_count,x_label='Percentage Revenue', y_label='Company Count')    
