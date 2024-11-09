@@ -21,3 +21,36 @@ def multiselect(title, options_list):
     else: 
         selected_options = selected
     return selected_options
+
+def fetch_top_revenue_retailers(df):
+    retailers_revenue = df[['Retailer','Amount']].groupby('Retailer').sum().reset_index().sort_values(by='Amount', ascending=False)
+    total_revenue = retailers_revenue['Amount'].sum()
+    percentage = [100,90,80,70,60,50,40,30,20,10]
+    retailer_count = []
+
+    for i in percentage:
+        target_revenue = 0.01 * i * total_revenue
+        loop = 1
+        while loop<=len(retailers_revenue) and retailers_revenue.iloc[:loop,1].sum()<=target_revenue:
+            loop +=1
+        retailer_count.append(loop)
+    retailers = pd.DataFrame(data={'Percentage Revenue': percentage, 'Retailer Count' : retailer_count})
+
+    return retailers
+
+def fetch_top_revenue_companies(df):
+    companies_revenue = df[['Company','Amount']].groupby('Company').sum().reset_index().sort_values(by='Amount', ascending=False)
+    total_revenue = companies_revenue['Amount'].sum()
+    percentage = [100,90,80,70,60,50,40,30,20,10]
+    company_count = []
+
+    for i in percentage:
+        target_revenue = 0.01 * i * total_revenue
+        loop = 1
+
+        while loop<=len(companies_revenue) and companies_revenue.iloc[:loop,1].sum()<=target_revenue:
+            loop +=1
+        company_count.append(loop)
+    companies = pd.DataFrame(data={'Percentage Revenue': percentage, 'Company Count' : company_count})
+
+    return companies
