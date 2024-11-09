@@ -18,8 +18,6 @@ def multiselect(title, options_list):
     select_all = st.sidebar.checkbox('Select All', value = True, key = title)
     if select_all:
         selected_options = options_list
-    elif select_all == False and selected == []:
-        selected_options = options_list
     else: 
         selected_options = selected
     return selected_options
