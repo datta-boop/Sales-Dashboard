@@ -4,7 +4,7 @@ import streamlit as st
 import Preprocessor
 import time
 
-st.set_page_config(page_title="Sales Dashboard", page_icon='./donut-chart.png', layout='wide')
+st.set_page_config(page_title="Sales Dashboard", page_icon='./donut-chart.ico', layout='wide')
 # Reading the data
 df = pd.read_csv("data.csv")
 
